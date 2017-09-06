@@ -1,12 +1,14 @@
 package minhna.animationvectordrawable;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +17,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import minhna.animationvectordrawable.adapter.AVDAdapter;
 import minhna.animationvectordrawable.application.BaseApplication;
+import minhna.animationvectordrawable.custom.MySlidingPanelLayout;
 import minhna.animationvectordrawable.model.AVD;
 
 public class MainActivity extends AppCompatActivity implements Animation.AnimationListener {
     @BindView(R.id.rv_avd)
     public RecyclerView rvAVD;
+    @BindView(R.id.sliding_layout)
+    public MySlidingPanelLayout slidingUpPanelLayout;
 
     private List<AVD> avdList;
     private Animation animation1, animation2;
@@ -30,10 +35,11 @@ public class MainActivity extends AppCompatActivity implements Animation.Animati
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         getWindowManager().getDefaultDisplay().getSize(BaseApplication.screenSize);
+        slidingUpPanelLayout.setAnchorPoint(0.5f);
 
         buildListData();
         rvAVD.setLayoutManager(new LinearLayoutManager(this));
-        rvAVD.setAdapter(new AVDAdapter(this, avdList));
+        rvAVD.setAdapter(new AVDAdapter(this, avdList, slidingUpPanelLayout));
 
 //        new Handler().postDelayed(new Runnable() {
 //            @Override

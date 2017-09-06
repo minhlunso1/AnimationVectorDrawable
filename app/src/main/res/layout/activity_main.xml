@@ -6,13 +6,46 @@
     android:layout_height="match_parent"
     tools:context="minhna.animationvectordrawable.MainActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_avd"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <!--app:umanoShadowHeight="4dp"-->
+    <minhna.animationvectordrawable.custom.MySlidingPanelLayout
+        android:id="@+id/sliding_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:umanoPanelHeight="@dimen/panel_height"
+        app:umanoFadeColor="@color/colorAccent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_avd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tv_author_name"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/panel_height"
+                android:gravity="center"
+                android:background="@color/colorPrimary"
+                android:text="@string/author"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:layout_below="@+id/tv_author_name"
+                android:src="@drawable/bird"
+                android:scaleType="centerCrop"/>
+        </RelativeLayout>
+
+    </minhna.animationvectordrawable.custom.MySlidingPanelLayout>
 
 </android.support.constraint.ConstraintLayout>

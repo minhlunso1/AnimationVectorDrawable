@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AnimationVectorDrawable</string>
+    <string name="author">Minh Nguyen</string>
 </resources>

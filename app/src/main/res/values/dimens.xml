@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="actionbar_height">48dp</dimen>
+    <dimen name="panel_height">52dp</dimen>
+    <dimen name="panel_height_container">312dp</dimen>
 </resources>

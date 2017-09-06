@@ -9,10 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+
 import java.util.List;
 
 import minhna.animationvectordrawable.R;
 import minhna.animationvectordrawable.application.BaseApplication;
+import minhna.animationvectordrawable.custom.MySlidingPanelLayout;
 import minhna.animationvectordrawable.model.AVD;
 import minhna.animationvectordrawable.utils.ScaleUtils;
 
@@ -24,14 +27,16 @@ public class AVDAdapter extends RecyclerView.Adapter<AVDViewHolder> {
     private Context context;
     private List<AVD> avdList;
     private float heightSize;
+    private MySlidingPanelLayout slidingUpPanelLayout;
 
-    public AVDAdapter(Context context, List<AVD> avdList) {
+    public AVDAdapter(Context context, List<AVD> avdList, MySlidingPanelLayout slidingUpPanelLayout) {
         this.context = context;
         this.avdList = avdList;
         if (avdList != null && avdList.size() != 0)
             heightSize = BaseApplication.screenSize.y / avdList.size() - ScaleUtils.convertDpToPixel(25f);
         else
             heightSize = 240f;
+        this.slidingUpPanelLayout = slidingUpPanelLayout;
     }
 
     @Override
@@ -48,15 +53,19 @@ public class AVDAdapter extends RecyclerView.Adapter<AVDViewHolder> {
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (avdList.get(position).isReverse()) {
-                    holder.imgAVD.setImageDrawable(context.getDrawable( avdList.get(position).getReverse_avd()));
-                    avdList.get(position).setReverse(false);
-                } else {
-                    holder.imgAVD.setImageDrawable(context.getDrawable(avdList.get(position).getAvd()));
-                    avdList.get(position).setReverse(true);
+                if (slidingUpPanelLayout.getPanelState() != SlidingUpPanelLayout.PanelState.COLLAPSED)
+                    slidingUpPanelLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+                else {
+                    if (avdList.get(position).isReverse()) {
+                        holder.imgAVD.setImageDrawable(context.getDrawable(avdList.get(position).getReverse_avd()));
+                        avdList.get(position).setReverse(false);
+                    } else {
+                        holder.imgAVD.setImageDrawable(context.getDrawable(avdList.get(position).getAvd()));
+                        avdList.get(position).setReverse(true);
+                    }
+                    Drawable d = holder.imgAVD.getDrawable();
+                    ((AnimatedVectorDrawable) d).start();
                 }
-                Drawable d = holder.imgAVD.getDrawable();
-                ((AnimatedVectorDrawable) d).start();
             }
         });
     }
