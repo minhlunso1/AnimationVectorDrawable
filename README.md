@@ -10,6 +10,7 @@ Time spent: 5 hours spent in total
 Design and implement AVD 
 * [x] Design AVD with SVG
 * [x] AVD implementation
+* [x] Sliding up panel
 
 ## Walkthrough
   ![screenshot](avd.gif)
