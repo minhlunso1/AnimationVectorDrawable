@@ -4,7 +4,7 @@
 
 Author: **Minh Nguyen**
 
-Time spent: 5 hours spent in total
+Time spent: 6 hours spent in total
 
 ## User Stories
 Design and implement AVD 
