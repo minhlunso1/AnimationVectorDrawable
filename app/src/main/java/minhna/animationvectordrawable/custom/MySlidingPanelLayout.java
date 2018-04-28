@@ -34,11 +34,15 @@ public class MySlidingPanelLayout extends SlidingUpPanelLayout {
     // ===========================================================
     // Methods for/from SuperClass/Interfaces
     // ===========================================================
+
+    /**
+     * Those methods prevent dragging event
+     */
+
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         return false;
     }
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         try {
